@@ -1,0 +1,24 @@
+﻿@model TrashCollector.Models.PickUp
+@{
+    ViewBag.Title = "Request One-Time Pick-Up";
+}
+
+<h2>OneTimeRequest</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.TimeOfRequest, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TimeOfRequest, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TimeOfRequest, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default bg-primary" />
+        </div>
+    </div>
+}

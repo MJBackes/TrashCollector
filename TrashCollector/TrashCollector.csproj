@@ -180,17 +180,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911221711099_InitialMigration.cs" />
-    <Compile Include="Migrations\201911221711099_InitialMigration.Designer.cs">
-      <DependentUpon>201911221711099_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911252035012_SecondMigration.cs" />
-    <Compile Include="Migrations\201911252035012_SecondMigration.Designer.cs">
-      <DependentUpon>201911252035012_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911261528368_ThirdMigration.cs" />
-    <Compile Include="Migrations\201911261528368_ThirdMigration.Designer.cs">
-      <DependentUpon>201911261528368_ThirdMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201911262145374_InitialMigration.cs" />
+    <Compile Include="Migrations\201911262145374_InitialMigration.Designer.cs">
+      <DependentUpon>201911262145374_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -302,6 +294,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\PickUpChange.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\OneTimeRequest.cshtml" />
+    <Content Include="Views\Customer\SuspendService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,21 +306,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911221711099_InitialMigration.resx">
-      <DependentUpon>201911221711099_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911252035012_SecondMigration.resx">
-      <DependentUpon>201911252035012_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911261528368_ThirdMigration.resx">
-      <DependentUpon>201911261528368_ThirdMigration.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201911262145374_InitialMigration.resx">
+      <DependentUpon>201911262145374_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

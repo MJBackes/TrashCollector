@@ -1,7 +1,29 @@
-﻿
+﻿@model TrashCollector.Models.Customer
 @{
     ViewBag.Title = "Customer";
 }
 
-<h2>Customer</h2>
+<div class="jumbotron">
+    <h1>Hello!</h1>
+    <p class="lead">@Html.DisplayFor(model => model.FirstName)</p>
+</div>
 
+<div class="row">
+    <div class="col-md-4">
+        <h2>Change your Pick-Up Day</h2>
+        <p>
+            Change what day of the week your trash is regualrly collected.
+        </p>
+        @Html.ActionLink("Change my Pick Up Day", "PickUpChange")
+    </div>
+    <div class="col-md-4">
+        <h2>Request a One-Time Pickup</h2>
+        <p>Select a date to have trash collected outside of your regualr pick-up schedule.</p>
+        @Html.ActionLink("Request a one-time pick-up", "OneTimeRequest")
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>

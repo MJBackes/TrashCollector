@@ -16,12 +16,14 @@ namespace TrashCollector.Models
         [ForeignKey("Employee")]
         public int? EmployeeId { get; set; }
         [Display(Name = "Time of Pick Up Request")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:MM/DD/YYYY}", ApplyFormatInEditMode =true)]
         public DateTime TimeOfRequest { get; set; }
         [Display(Name = "Time of Pick Up")]
         public DateTime? TimeOfPickUp { get; set; }
         [Display(Name = "Is Special Pick Up?")]
         public bool IsSpecial { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual Employee Employee { get; set; }
+        public  Customer Customer { get; set; }
+        public  Employee Employee { get; set; }
     }
 }

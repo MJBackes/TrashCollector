@@ -73,26 +73,52 @@ namespace TrashCollector.Controllers
             }
         }
 
-        // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        //// GET: Customer/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: Customer/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        [HttpGet]
+        public ActionResult PickUpChange()
+        {
+            var userId = User.Identity.GetUserId();
+            return View(db.Customers.SingleOrDefault(c => c.ApplicationId == userId));
+        }
+        [HttpPost]
+        public ActionResult PickUpChange(Customer customer)
+        {
+            db.Customers.Single(m => m.Id == customer.Id).PickUpDay = customer.PickUpDay;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult OneTimeRequest()
         {
             return View();
         }
-
-        // POST: Customer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult OneTimeRequest(PickUp pickUp)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var userId = User.Identity.GetUserId();
+            db.PickUps.Add(new PickUp { CustomerId = db.Customers.SingleOrDefault(c => c.ApplicationId == userId).Id, IsSpecial = true, TimeOfRequest = pickUp.TimeOfRequest});
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
