@@ -66,14 +66,13 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PickUpDay, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PickUpDay, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PickUpDay, "", new { @class = "text-danger" })
+            @Html.DropDownList("PickUpDay", new SelectList(new  string[]{"Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" }))
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.ServiceStartTime, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ServiceStartTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ServiceStartTime, new { htmlAttributes = new { @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.ServiceStartTime, "", new { @class = "text-danger" })
         </div>
     </div>

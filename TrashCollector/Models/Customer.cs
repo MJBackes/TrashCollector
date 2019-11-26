@@ -25,8 +25,12 @@ namespace TrashCollector.Models
         [Display(Name = "Is Service In Suspension")]
         public bool? ServiceSuspended { get; set; }
         [Display(Name = "Beginning of Service")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/DD/YYYY}", ApplyFormatInEditMode = true)]
         public DateTime? ServiceStartTime { get; set; }
         [Display(Name = "End of Service")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/DD/YYYY}", ApplyFormatInEditMode = true)]
         public DateTime? ServiceEndTime { get; set; }
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
