@@ -31,5 +31,6 @@ namespace TrashCollector.Models
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public double? Balance { get; set; }
     }
 }

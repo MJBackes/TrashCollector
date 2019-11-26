@@ -79,8 +79,9 @@ namespace TrashCollector.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
         [Required]
-        [Display(Name = "UserRoles")]
+        [Display(Name = "Account Type")]
         public string UserRoles { get; set; }
     }
 
