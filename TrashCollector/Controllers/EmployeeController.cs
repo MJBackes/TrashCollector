@@ -96,5 +96,23 @@ namespace TrashCollector.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult Collect(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            Employee employeeFromDB = db.Employees.SingleOrDefault(e => e.ApplicationId == userId);
+            PickUp pickUpFromDB = db.PickUps.SingleOrDefault(p => p.Id == id);
+            if (pickUpFromDB.EmployeeId == null)
+            {
+                pickUpFromDB.EmployeeId = employeeFromDB.Id;
+                pickUpFromDB.TimeOfPickUp = DateTime.Now;
+                if (pickUpFromDB.IsSpecial)
+                    db.Customers.Find(pickUpFromDB.CustomerId).Balance += 2.25;
+                else
+                    db.Customers.Find(pickUpFromDB.CustomerId).Balance += 1.99;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
