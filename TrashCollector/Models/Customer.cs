@@ -11,7 +11,7 @@ namespace TrashCollector.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Adress { get; set; }
+        public string Address { get; set; }
         [Display(Name ="Zip Code")]
         public int? ZipCode { get; set; }
         public string State { get; set; }

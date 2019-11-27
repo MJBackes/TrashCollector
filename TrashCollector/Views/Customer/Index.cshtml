@@ -2,10 +2,10 @@
 @{
     ViewBag.Title = "Customer";
 }
-
+<link rel="stylesheet" href="~/Content/Site.css" type="text/css"/>
 <div class="jumbotron">
-    <h1>Hello!</h1>
-    <p class="lead">@Html.DisplayFor(model => model.FirstName)</p>
+    <h1>Hello @Html.Raw((string)((TrashCollector.Models.Customer)ViewBag.Customer).FirstName)!</h1>
+    @Html.ActionLink("Check my Balance", "CheckBalance", null, new { @class="btn btn-primary btn-lg" })
 </div>
 
 <div class="row">
@@ -14,16 +14,16 @@
         <p>
             Change what day of the week your trash is regualrly collected.
         </p>
-        @Html.ActionLink("Change my Pick Up Day", "PickUpChange")
+        @Html.ActionLink("Change my Pick Up Day", "PickUpChange", null, new { @class="btn btn-primary btn-lg" })
     </div>
     <div class="col-md-4">
         <h2>Request a One-Time Pickup</h2>
         <p>Select a date to have trash collected outside of your regualr pick-up schedule.</p>
-        @Html.ActionLink("Request a one-time pick-up", "OneTimeRequest")
+        @Html.ActionLink("Request a one-time pick-up", "OneTimeRequest", null, new { @class="btn btn-primary btn-lg" })
     </div>
     <div class="col-md-4">
         <h2>Suspend Service</h2>
         <p>If you won't be needing trash collected for a period of time, you can enter a start and end date to suspend regualr trash pick-ups.</p>
-        @Html.ActionLink("Suspend my service", "SuspendService")
+        @Html.ActionLink("Suspend my service", "SuspendService", null, new { @class="btn btn-primary btn-lg" })
     </div>
 </div>

@@ -18,7 +18,7 @@ namespace TrashCollector.Models
         public DateTime StartOfSuspension { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/DD/YYYY}", ApplyFormatInEditMode = true)]
-        public DateTime EndOfSuspension { get; set; }
+        public DateTime? EndOfSuspension { get; set; }
         public Customer Customer { get; set; }
     }
 }

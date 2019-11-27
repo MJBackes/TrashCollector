@@ -12,7 +12,7 @@ namespace TrashCollector.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Adress = c.String(),
+                        Address = c.String(),
                         ZipCode = c.Int(),
                         State = c.String(),
                         Country = c.String(),
@@ -135,7 +135,7 @@ namespace TrashCollector.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         CustomerId = c.Int(nullable: false),
                         StartOfSuspension = c.DateTime(nullable: false),
-                        EndOfSuspension = c.DateTime(nullable: false),
+                        EndOfSuspension = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)

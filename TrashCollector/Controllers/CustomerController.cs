@@ -15,12 +15,15 @@ namespace TrashCollector.Controllers
         {
             db = new ApplicationDbContext();
         }
+        [HttpGet]
         // GET: Customer
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            Customer customerFromDB = db.Customers.SingleOrDefault(c => c.ApplicationId == userId);
+            ViewBag.Customer = customerFromDB;
             return View();
         }
-
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
@@ -40,15 +43,21 @@ namespace TrashCollector.Controllers
             try
             {
                 customer.ApplicationId = User.Identity.GetUserId();
-                customer.ServiceSuspended = false;
-                db.Customers.Add(customer);
+                customer.Balance = 0;
                 if (customer.ServiceStartTime != null && DateTime.Today < customer.ServiceStartTime)
+                {
                     db.Suspensions.Add(new ServiceSuspension
                     {
                         CustomerId = customer.Id,
                         StartOfSuspension = DateTime.Today,
                         EndOfSuspension = (DateTime)customer.ServiceStartTime
+
                     });
+                    customer.ServiceSuspended = true;
+                }
+                else
+                    customer.ServiceSuspended = false;
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -144,6 +153,12 @@ namespace TrashCollector.Controllers
             });
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult CheckBalance()
+        {
+            var userId = User.Identity.GetUserId();
+            return View(db.Customers.SingleOrDefault(c => c.ApplicationId == userId));
         }
     }
 }

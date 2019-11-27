@@ -1,0 +1,11 @@
+﻿@model TrashCollector.Models.Customer
+@{
+    ViewBag.Title = "CheckBalance";
+}
+
+<h2>My Balance</h2>
+
+<div class="jumbotron">
+    <h3>My Balance:</h3>
+    <h2>$@Html.Raw(Model.Balance)</h2>
+</div>

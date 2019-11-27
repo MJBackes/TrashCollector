@@ -175,14 +175,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911271334419_InitialMigration.cs" />
-    <Compile Include="Migrations\201911271334419_InitialMigration.Designer.cs">
-      <DependentUpon>201911271334419_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201911271626480_InitialMigration.cs" />
+    <Compile Include="Migrations\201911271626480_InitialMigration.Designer.cs">
+      <DependentUpon>201911271626480_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -299,6 +300,9 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\OneTimeRequest.cshtml" />
     <Content Include="Views\Customer\SuspendService.cshtml" />
+    <Content Include="Views\Customer\CheckBalance.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,8 +317,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911271334419_InitialMigration.resx">
-      <DependentUpon>201911271334419_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911271626480_InitialMigration.resx">
+      <DependentUpon>201911271626480_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
