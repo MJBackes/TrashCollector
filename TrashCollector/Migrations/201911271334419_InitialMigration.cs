@@ -128,10 +128,24 @@ namespace TrashCollector.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.ServiceSuspensions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false),
+                        StartOfSuspension = c.DateTime(nullable: false),
+                        EndOfSuspension = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .Index(t => t.CustomerId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.ServiceSuspensions", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.PickUps", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.PickUps", "CustomerId", "dbo.Customers");
@@ -140,6 +154,7 @@ namespace TrashCollector.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropIndex("dbo.ServiceSuspensions", new[] { "CustomerId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.PickUps", new[] { "EmployeeId" });
             DropIndex("dbo.PickUps", new[] { "CustomerId" });
@@ -150,6 +165,7 @@ namespace TrashCollector.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Customers", new[] { "ApplicationId" });
+            DropTable("dbo.ServiceSuspensions");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.PickUps");
             DropTable("dbo.Employees");

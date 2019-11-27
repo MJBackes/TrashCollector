@@ -42,6 +42,13 @@ namespace TrashCollector.Controllers
                 customer.ApplicationId = User.Identity.GetUserId();
                 customer.ServiceSuspended = false;
                 db.Customers.Add(customer);
+                if (customer.ServiceStartTime != null && DateTime.Today < customer.ServiceStartTime)
+                    db.Suspensions.Add(new ServiceSuspension
+                    {
+                        CustomerId = customer.Id,
+                        StartOfSuspension = DateTime.Today,
+                        EndOfSuspension = (DateTime)customer.ServiceStartTime
+                    });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -117,6 +124,24 @@ namespace TrashCollector.Controllers
         {
             var userId = User.Identity.GetUserId();
             db.PickUps.Add(new PickUp { CustomerId = db.Customers.SingleOrDefault(c => c.ApplicationId == userId).Id, IsSpecial = true, TimeOfRequest = pickUp.TimeOfRequest});
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult SuspendService()
+        {
+            var userId = User.Identity.GetUserId();
+            return View(db.Customers.SingleOrDefault(c => c.ApplicationId == userId));
+        }
+        [HttpPost]
+        public ActionResult SuspendService(Customer customer)
+        {
+            db.Suspensions.Add(new ServiceSuspension 
+            { 
+                CustomerId = customer.Id, 
+                StartOfSuspension = (DateTime)customer.ServiceEndTime, 
+                EndOfSuspension = (DateTime)customer.ServiceStartTime 
+            });
             db.SaveChanges();
             return RedirectToAction("Index");
         }
