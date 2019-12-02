@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer.UserName)
+            @Html.ActionLink(item.Customer.UserName, "CustomerMap", new { item.Customer.Id})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.Address)

@@ -50,12 +50,6 @@ namespace TrashCollector.Controllers
             }
             db.SaveChanges();
         }
-        // GET: Employee/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Employee/Create
         public ActionResult Create()
         {
@@ -71,50 +65,6 @@ namespace TrashCollector.Controllers
                 employee.ApplicationId = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Employee/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Employee/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Employee/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Employee/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -143,20 +93,27 @@ namespace TrashCollector.Controllers
         [HttpGet]
         public ActionResult DailyPickUps()
         {
-            var userId = User.Identity.GetUserId();
-            var zip = db.Employees.SingleOrDefault(e => e.ApplicationId == userId).ZipCode;
-            List<Customer> customers = db.Customers.Where(c => c.ZipCode == zip).ToList();
-            customers = customers.FindAll(c => c.PickUpDay == DateTime.Today.DayOfWeek.ToString());
-            return View(customers);
+            return View(DailyPickUpsHelper());
         }
         [HttpPost]
         public ActionResult DailyPickUps(string Day)
         {
+            return View(DailyPickUpsHelper(Day));
+        }
+        private List<Customer> DailyPickUpsHelper(string Day = null)
+        {
+            if (Day == null)
+                Day = DateTime.Today.DayOfWeek.ToString();
             var userId = User.Identity.GetUserId();
             var zip = db.Employees.SingleOrDefault(e => e.ApplicationId == userId).ZipCode;
             List<Customer> customers = db.Customers.Where(c => c.ZipCode == zip).ToList();
-            customers = customers.FindAll(c => c.PickUpDay == Day);
-            return View(customers);
+            return customers.FindAll(c => c.PickUpDay == Day);
+        }
+        [HttpGet]
+        public ActionResult CustomerMap(int id)
+        {
+            Customer customer = db.Customers.Find(id);
+            return View(customer);
         }
     }
 }

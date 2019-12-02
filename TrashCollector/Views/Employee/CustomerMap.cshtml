@@ -1,0 +1,12 @@
+﻿@model TrashCollector.Models.Customer
+@{
+    ViewBag.Title = "CustomerMap";
+}
+
+<h2>CustomerMap</h2>
+
+<div id="mapView">
+    <p>@Html.Raw(Model.Address)</p>
+    <iframe src="https://www.google.com/maps/embed/v1/place?q=@(Model.Address)&key=@()" allowfullscreen></iframe>
+</div>
+@Html.ActionLink("Return to Customer Index", "Index")
