@@ -44,6 +44,8 @@ namespace TrashCollector.Controllers
             {
                 customer.ApplicationId = User.Identity.GetUserId();
                 customer.Balance = 0;
+                customer.Country = "USA";
+                customer.UserName = db.Users.SingleOrDefault(u => u.Id == customer.ApplicationId).UserName.Split('@')[0];
                 if (customer.ServiceStartTime != null && DateTime.Today < customer.ServiceStartTime)
                 {
                     db.Suspensions.Add(new ServiceSuspension

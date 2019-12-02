@@ -18,6 +18,7 @@ namespace TrashCollector.Migrations
                         Country = c.String(),
                         FirstName = c.String(),
                         LastName = c.String(),
+                        UserName = c.String(),
                         PickUpDay = c.String(),
                         ServiceSuspended = c.Boolean(),
                         ServiceStartTime = c.DateTime(),
@@ -86,6 +87,16 @@ namespace TrashCollector.Migrations
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Days",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false),
+                        HasBeenPopulated = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Employees",
@@ -169,6 +180,7 @@ namespace TrashCollector.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.PickUps");
             DropTable("dbo.Employees");
+            DropTable("dbo.Days");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

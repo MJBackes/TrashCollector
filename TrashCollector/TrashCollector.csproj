@@ -181,13 +181,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911271626480_InitialMigration.cs" />
-    <Compile Include="Migrations\201911271626480_InitialMigration.Designer.cs">
-      <DependentUpon>201911271626480_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201912021540096_InitialMigration.cs" />
+    <Compile Include="Migrations\201912021540096_InitialMigration.Designer.cs">
+      <DependentUpon>201912021540096_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Views\Customer\CheckBalance.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\DailyPickups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,8 +319,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911271626480_InitialMigration.resx">
-      <DependentUpon>201911271626480_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912021540096_InitialMigration.resx">
+      <DependentUpon>201912021540096_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

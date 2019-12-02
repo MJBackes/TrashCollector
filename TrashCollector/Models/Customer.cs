@@ -20,6 +20,8 @@ namespace TrashCollector.Models
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
         [Display(Name = "Pick Up Day")]
         public string PickUpDay { get; set; }
         [Display(Name = "Is Service In Suspension")]
