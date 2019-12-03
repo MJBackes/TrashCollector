@@ -30,10 +30,11 @@ function getNames() {
 }
 
 async function setOptions(zipcode) {
+    //Default options for when the geocoder cannot access the api.
     let lat = 43;
     let long = -88.25;
     let zoom = 9;
-
+    //
     let geocoder = new google.maps.Geocoder();
     await geocoder.geocode({ 'address': zipcode }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -59,9 +60,11 @@ function placeMarkers(positions, names, map) {
     }
 }
 
-async function getPositions(positions,addresses,zip) {
+async function getPositions(positions, addresses, zip) {
+    //Default Coords for when the geocoder cannot access the api.
     let lat = 43;
     let long = -88;
+    //
     let geocoder = new google.maps.Geocoder();
     for (let i = 0; i < addresses.length; i++) {
             await geocoder.geocode({ 'address': addresses[i] + " " + zip }, function (results, status) {

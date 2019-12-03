@@ -6,8 +6,11 @@
 p{
     color:aliceblue;
 }
-.jumbotron {
+.jumbotron{
     background-color: darkcyan;
+}
+.jumboLink{
+    color: aliceblue;
 }
 label{
     color:aliceblue;

@@ -24,12 +24,6 @@ namespace TrashCollector.Controllers
             ViewBag.Customer = customerFromDB;
             return View();
         }
-        // GET: Customer/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -70,19 +64,26 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            return View(db.Customers.SingleOrDefault(c => c.ApplicationId == userId));
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Customer customer)
         {
             try
             {
-                // TODO: Add update logic here
-
+                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == customer.Id);
+                customerFromDb.FirstName = customer.FirstName;
+                customerFromDb.LastName = customer.LastName;
+                customerFromDb.Address = customer.Address;
+                customerFromDb.State = customer.State;
+                customerFromDb.ZipCode = customer.ZipCode;
+                customerFromDb.PickUpDay = customer.PickUpDay;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -91,27 +92,6 @@ namespace TrashCollector.Controllers
             }
         }
 
-        //// GET: Customer/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Customer/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
         [HttpGet]
         public ActionResult PickUpChange()
         {

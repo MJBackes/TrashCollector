@@ -6,6 +6,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1>Hello @((string)((TrashCollector.Models.Customer)ViewBag.Customer).FirstName)!</h1>
+        <h5>@Html.ActionLink("Update my account information", "Edit", null, new { @class="jumboLink"})</h5>
         @Html.ActionLink("Check my Balance", "CheckBalance", null, new { @class = "btn btn-primary btn-lg" })
     </div>
 </div>
