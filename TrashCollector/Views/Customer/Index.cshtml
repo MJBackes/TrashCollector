@@ -3,9 +3,11 @@
     ViewBag.Title = "Customer";
 }
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css"/>
-<div class="jumbotron">
-    <h1>Hello @Html.Raw((string)((TrashCollector.Models.Customer)ViewBag.Customer).FirstName)!</h1>
-    @Html.ActionLink("Check my Balance", "CheckBalance", null, new { @class="btn btn-primary btn-lg" })
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Hello @((string)((TrashCollector.Models.Customer)ViewBag.Customer).FirstName)!</h1>
+        @Html.ActionLink("Check my Balance", "CheckBalance", null, new { @class = "btn btn-primary btn-lg" })
+    </div>
 </div>
 
 <div class="row">

@@ -1,8 +1,17 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:cadetblue;
 }
-
+p{
+    color:aliceblue;
+}
+.jumbotron {
+    background-color: darkcyan;
+}
+label{
+    color:aliceblue;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -28,4 +37,17 @@ textarea {
 .CustomerIndexButton{
     background-color:aquamarine;
     padding:20px;
+}
+.table{
+    color:aliceblue;
+}
+a{
+    color:darkcyan;
+}
+.linkText{
+    color:darkcyan;
+}
+#map{
+    height:360px;
+    width:100%;
 }

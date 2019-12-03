@@ -5,10 +5,10 @@
     ViewBag.Title = "Customer Location";
 }
 
-<h2>CustomerMap</h2>
+<h2>Customer View</h2>
 
 <div id="mapDiv">
-    <p>@Html.Raw(Model.Address)</p>
+    <p>@(Model.Address)</p>
     <iframe style="height: 360px; width:100%" id="mapView" src="https://www.google.com/maps/embed/v1/place?key=@(APIKey.Key)&q=@(URLFormatter.Format(Model.Address))+near+@(Model.ZipCode)" allowfullscreen></iframe>
 </div>
 @Html.ActionLink("Return to Customer Index", "Index")

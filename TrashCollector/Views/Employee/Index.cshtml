@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<TrashCollector.Models.PickUp>
-
+@using TrashCollector.App_Start
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Today's Pick-Ups</h2>
 
-<table class="table">
+<table class="table" style="color:aliceblue">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Customer.UserName)
@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.Customer.Address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeOfRequest)
+            @Html.DisplayNameFor(model => model.Customer.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfRequest.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TimeOfPickUp)
@@ -26,30 +29,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Customer.UserName, "CustomerMap", new { item.Customer.Id})
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeOfRequest.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeOfPickUp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsSpecial)
-        </td>
-        <td>
-            @Html.ActionLink("Confirm Collection", "Collect", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Customer.UserName, "CustomerMap", new { item.Customer.Id })
+            </td>
+            <td class="addressCol">
+                @Html.DisplayFor(modelItem => item.Customer.Address)
+            </td>
+            <td class="zipCol">
+                @Html.DisplayFor(modelItem => item.Customer.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfRequest.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfPickUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSpecial)
+            </td>
+            <td>
+                @Html.ActionLink("Confirm Collection", "Collect", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div id="map" style="height: 360px; width: 100%">
+
+</div>
+
 <div class="jumbotron">
     @Html.ActionLink("View Pick-Ups By Day", "DailyPickUps", null, new { @class = "btn btn-primary btn-lg" })
 </div>
+<script type="text/javascript" src="~/Scripts/GoogleMaps.js"></script>
+<script aysnc defer src="https://maps.googleapis.com/maps/api/js?key=@(APIKey.JSKey)&callback=initMap"></script>
+

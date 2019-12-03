@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TrashCollector.Models.Customer>
 
 @{
-    ViewBag.Title = "DailyPickups";
+    ViewBag.Title = "Daily Pick-Ups";
 }
 
-<h2>DailyPickups</h2>
+    <h2>Pick-Ups by Day of the Week</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -22,7 +22,7 @@
         </div>
     </div>
 }
-<table class="table">
+<table class="table" style="color:aliceblue">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
@@ -37,7 +37,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.ActionLink(item.UserName,"CustomerMap",new { item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
