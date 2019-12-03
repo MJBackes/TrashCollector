@@ -37,7 +37,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.UserName,"CustomerMap",new { item.Id })
+                @Html.ActionLink(item.UserName,"CustomerMap",new { item.Id },new { @class = "linkText" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)

@@ -50,6 +50,22 @@ namespace TrashCollector.Controllers
             }
             db.SaveChanges();
         }
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var userId = User.Identity.GetUserId();
+            return View(db.Employees.SingleOrDefault(e => e.ApplicationId == userId));
+        }
+        [HttpPost]
+        public ActionResult Edit(Employee employee)
+        {
+            Employee employeeFromDb = db.Employees.Find(employee.Id);
+            employeeFromDb.FirstName = employee.FirstName;
+            employeeFromDb.LastName = employee.LastName;
+            employeeFromDb.ZipCode = employee.ZipCode;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         // GET: Employee/Create
         public ActionResult Create()
         {

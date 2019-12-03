@@ -309,6 +309,7 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\DailyPickups.cshtml" />
     <Content Include="Views\Employee\CustomerMap.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

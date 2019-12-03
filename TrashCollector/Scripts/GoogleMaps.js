@@ -1,16 +1,21 @@
 ﻿async function initMap() {
+    
+    if (document.getElementsByClassName("zipCol").length > 0) {
+        var addresses = getAddresses();
+        var names = getNames();
+        var zipcode = document.getElementsByClassName("zipCol")[0].innerHTML;
 
-    let addresses = getAddresses();
-    let names = getNames();
-    let zipcode = document.getElementsByClassName("zipCol")[0].innerHTML;
+        var positions = [];
+        positions = await getPositions(positions, addresses, zipcode);
 
-    let positions = [];
-    positions = await getPositions(positions, addresses, zipcode);
-
-    let options = await setOptions(zipcode);
-
+        var options = await setOptions(zipcode);
+    }
+    else {
+        var options = await setOptions(53202);
+    }
     var map = new google.maps.Map(document.getElementById("map"), options);
-    placeMarkers(positions, names, map);
+    if(document.getElementsByClassName("zipCol").length > 0)
+        placeMarkers(positions, names, map);
 }
 
 function getAddresses() {

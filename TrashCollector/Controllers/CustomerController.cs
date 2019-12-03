@@ -76,7 +76,7 @@ namespace TrashCollector.Controllers
         {
             try
             {
-                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == customer.Id);
+                Customer customerFromDb = db.Customers.Find(customer.Id);
                 customerFromDb.FirstName = customer.FirstName;
                 customerFromDb.LastName = customer.LastName;
                 customerFromDb.Address = customer.Address;
