@@ -32,7 +32,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="nameCol">
                 @Html.ActionLink(item.Customer.UserName, "CustomerMap", new { item.Customer.Id })
             </td>
             <td class="addressCol">
